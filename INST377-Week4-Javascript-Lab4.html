@@ -1,0 +1,84 @@
+<html>
+<head>
+    <title>Interactive Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .section {
+            border: 2px solid black;
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+            display: inline-block; width:40% ;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="main-heading">INST 377 - Lab 4</h1>
+
+    <div class="section" id="alert-section">
+        <h2>Alert Me Section</h2>
+        <form onsubmit="showAlert(event)">
+            <input type="text" id="nameInput" required>
+            <button type="submit">Alert Me</button>
+        </form>
+    </div>
+
+    <div class="section" id="color-section">
+        <h2>Change Color Section</h2>
+        <button onclick="changeColor()">Change Color</button>
+    </div>
+
+    <div class="section" id="text-tester-section">
+        <h2>Text Tester Section</h2>
+        <form onsubmit="validateText(event)">
+            <input type="text" id="textInput" required>
+            <button type="submit">Validate Text</button>
+        </form>
+    </div>
+
+    <div class="section" id="add-text-section">
+        <h2>Add Text Section</h2>
+        <button onclick="addText()">Add Text</button>
+    </div>
+
+    <script>
+        let isBlue = true;
+
+        function showAlert(event) {
+            event.preventDefault();
+            var name = document.getElementById("nameInput").value;
+            alert(`Hi ${name}!`);
+        }
+
+        function changeColor() {
+            if (isBlue) {
+                document.body.style.backgroundColor = "green";
+            } else {
+                document.body.style.backgroundColor = "blue";
+            }
+            isBlue = !isBlue;
+        }
+
+        function validateText(event) {
+            event.preventDefault();
+            var text = document.getElementById("textInput").value;
+            var validation = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+
+            if (validation.test(text)) {
+                alert("Special character detected!");
+            } else {
+                alert("Text is valid!");
+            }
+        }
+
+        function addText() {
+            var heading = document.getElementById("main-heading");
+            heading.innerText += " - Adding Text";
+        }
+    </script>
+</body>
+</html>
